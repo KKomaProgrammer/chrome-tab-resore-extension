@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tab Restore</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main class="app">
+    <header class="header">
+      <div>
+        <p class="eyebrow">TAB RESTORE</p>
+        <h1>탭 상태 복구</h1>
+      </div>
+      <span id="saveStatus" class="status">준비 중</span>
+    </header>
+
+    <section class="master-card">
+      <div>
+        <strong>자동 복구</strong>
+        <span>다시 열린 페이지에 바로 적용</span>
+      </div>
+      <label class="switch" aria-label="자동 복구">
+        <input id="autoRestore" type="checkbox">
+        <span class="switch-track"></span>
+      </label>
+    </section>
+
+    <div id="categoryGroups" class="groups"></div>
+
+    <section class="section shortcut-section">
+      <div class="section-title-row">
+        <h2>단축키</h2>
+        <label class="switch small" aria-label="통합 단축키">
+          <input id="shortcutsEnabled" type="checkbox">
+          <span class="switch-track"></span>
+        </label>
+      </div>
+      <div id="shortcutRows"></div>
+    </section>
+
+    <div class="actions">
+      <button id="saveNow" class="button secondary" type="button">지금 저장</button>
+      <button id="restoreNow" class="button primary" type="button">지금 복구</button>
+    </div>
+    <p id="feedback" class="feedback" aria-live="polite"></p>
+  </main>
+  <script src="popup.js"></script>
+</body>
+</html>
