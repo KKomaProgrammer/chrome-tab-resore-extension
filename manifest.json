@@ -1,0 +1,59 @@
+{
+  "manifest_version": 3,
+  "name": "Tab Restore",
+  "version": "1.0.0",
+  "description": "탭의 편집 내용, 입력 상태, iframe, 스크롤과 페이지 상태를 저장하고 복구합니다.",
+  "minimum_chrome_version": "111",
+  "permissions": [
+    "storage",
+    "unlimitedStorage",
+    "tabs",
+    "scripting"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Tab Restore",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["page-bridge.js"],
+      "run_at": "document_start",
+      "all_frames": true,
+      "match_about_blank": true,
+      "match_origin_as_fallback": true,
+      "world": "MAIN"
+    },
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": true,
+      "match_about_blank": true,
+      "match_origin_as_fallback": true,
+      "world": "ISOLATED"
+    }
+  ],
+  "commands": {
+    "restore-current": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y",
+        "mac": "Command+Shift+Y"
+      },
+      "description": "저장된 탭 상태 복구"
+    },
+    "reload-and-restore": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+U",
+        "mac": "Command+Shift+U"
+      },
+      "description": "현재 상태 저장 후 새로고침 및 복구"
+    }
+  }
+}
